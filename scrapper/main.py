@@ -173,6 +173,6 @@ def crawl(url):
 
         if text_length == 0:
             continue
-        crawled_links.append([url, file_name, text_length])
+        crawled_links.append({"url":url, "file_name":file_name, "text_length":text_length})
         
     return crawled_links
