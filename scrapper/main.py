@@ -147,7 +147,7 @@ def crawl(url):
         # Get the page source, which includes the dynamically loaded content
         page_source = driver.page_source
         
-        driver.quit()
+        
         # Try extracting the text from the link, if failed proceed with the next item in the queue
         file_name, text, text_length = None, None, 0
         try:
@@ -177,6 +177,8 @@ def crawl(url):
         if text_length == 0:
             continue
         crawled_links.append({"url":url, "file_name":file_name, "text_length":text_length})
+
+        driver.quit()
 
         if datetime.now()-timedelta(minutes=2) > started_time: # only have to scrap for 2 minutes to get better performance
             break
