@@ -159,6 +159,7 @@ def crawl(url):
             text = soup.get_text()
 
             text_length = len(text)
+            text = re.sub(r'\n\s*\n', '\n', text)
             file_name = tmp_write_file(text)
 
             # If the crawler gets to a page that requires JavaScript, it will stop the crawl
@@ -166,7 +167,7 @@ def crawl(url):
                 print("Unable to parse page " + url + " due to JavaScript being required")
             
         except Exception as e:
-            print("Unable to parse page " + url)
+            print("Unable to parse page " + url, "Error:", e)
 
         # Get the hyperlinks from the URL and add them to the queue
         for link in get_domain_hyperlinks(local_domain, url):

@@ -8,7 +8,7 @@ app = FastAPI()
 def read_root(body: dict):
     response = None
     try:
-        crawl(body['url'])
+        response = crawl(body['url'])
     except:
         print("Error while doing the scrapping for ", body["url"])
     return {"message": response}
