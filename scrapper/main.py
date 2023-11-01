@@ -4,6 +4,7 @@
 
 import re
 import time
+from datetime import datetime, timedelta
 import urllib.request
 from bs4 import BeautifulSoup
 from collections import deque
@@ -115,6 +116,8 @@ def tmp_write_file(text):
     return temp_filename
 
 def crawl(url):
+    started_time = datetime.now()
+
     crawled_links = []
     # Parse the URL and get the domain
     local_domain = urlparse(url).netloc
@@ -174,5 +177,8 @@ def crawl(url):
         if text_length == 0:
             continue
         crawled_links.append({"url":url, "file_name":file_name, "text_length":text_length})
+
+        if datetime.now()-timedelta(minutes=2) > started_time: # only have to scrap for 2 minutes to get better performance
+            break
         
     return crawled_links
