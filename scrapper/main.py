@@ -115,7 +115,7 @@ def tmp_write_file(text):
 
     return temp_filename
 
-def crawl(url):
+def crawl(url, site_map=False):
     started_time = datetime.now()
 
     crawled_links = []
@@ -181,7 +181,7 @@ def crawl(url):
 
         driver.quit()
 
-        if datetime.now()-timedelta(minutes=2) > started_time: # only have to scrap for 2 minutes to get better performance
+        if datetime.now()-timedelta(minutes=2) > started_time or site_map: # only have to scrap for 2 minutes to get better performance
             break
         
     return crawled_links
