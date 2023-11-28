@@ -9,7 +9,7 @@ def read_root(body: dict):
     response = None
     try:
         response = crawl(body['url'], body.get('site_map', False))
-    except:
-        print("Error while doing the scrapping for ", body["url"])
+    except Exception as e:
+        print("Error while doing the scrapping for ", body["url"], "| Error: ",e)
     return {"message": response}
     
