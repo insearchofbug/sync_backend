@@ -185,7 +185,7 @@ def crawl(url, site_map=False):
 
         driver.quit()
 
-        if datetime.now()-timedelta(minutes=2) > started_time or site_map: # only have to scrap for 2 minutes to get better performance
+        if datetime.now()-timedelta(minutes=3) > started_time or site_map: # only have to scrap for 2 minutes to get better performance
             break
         
     return crawled_links
