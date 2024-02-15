@@ -154,9 +154,13 @@ def crawl(url, site_map=False):
 
             # Get the text from the URL using BeautifulSoup
             soup = BeautifulSoup(page_source, "html.parser")
+            links_text = "" 
+            for link in soup.find_all("a"):
+                links_text += link.get("href") + " : " + link.text + "\n"
 
             # Get the text but remove the tags
-            text = soup.get_text()
+            text = soup.get_text() 
+            text += links_text
 
             text_length = len(text)
             text = re.sub(r'\n\s*\n', '\n', text)
